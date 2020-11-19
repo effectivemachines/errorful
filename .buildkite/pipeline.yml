@@ -1,0 +1,17 @@
+---
+steps:
+  - command: /home/aw/Src/buretoolbox/precommit/src/main/shell/test-patch.sh
+        --patch-dir=/tmp/yetus-out
+        --plugins=all
+        --docker
+        --docker-cache-from=apache/yetus:main
+        --html-report-file=/tmp/yetus-out/report.html
+        --console-report-file=/tmp/yetus-out/console.txt
+        --brief-report-file=/tmp/yetus-out/brief.txt
+        --bugcomments=briefreport,htmlout,buildkiteannotate
+        --tests-filter=checkstyle,test4tests
+    label: "Apache Yetus"
+  - label: 'Buildkite Recovery'
+    command: >
+        /home/aw/Src/buretoolbox/precommit/src/main/shell/buildkite-recovery.sh
+        --patch-dir=/tmp/yetus-out
