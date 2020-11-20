@@ -1,6 +1,9 @@
 ---
 steps:
-  - command: /home/aw/Src/buretoolbox/precommit/src/main/shell/test-patch.sh
+  - label: "Clean patch-dir"
+    command: \[ -d /tmp/yetus-out ] && rm -rf /tmp/yetus-out/*
+  - command: >
+        /home/aw/Src/buretoolbox/precommit/src/main/shell/test-patch.sh
         --patch-dir=/tmp/yetus-out
         --plugins=all
         --docker
